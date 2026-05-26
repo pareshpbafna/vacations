@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bafna Family — Travel Gallery</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f0f0f;--surface:#1a1a1a;--border:#2e2e2e;
+  --text:#f0f0f0;--muted:#888;--accent:#e8c97c;--tr:0.25s ease;
+}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+a{color:inherit;text-decoration:none}
+
+.header{max-width:1100px;margin:0 auto;padding:3.5rem 2rem 2rem}
+.header h1{font-size:2.4rem;font-weight:600;letter-spacing:-.5px;color:#fff}
+.header h1 span{color:var(--accent)}
+.header p{color:var(--muted);margin-top:.5rem;font-size:1rem;max-width:520px;line-height:1.6}
+
+.trips{max-width:1100px;margin:0 auto;padding:0 2rem 5rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+
+/* ── Trip card ── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:transform var(--tr),border-color var(--tr);display:flex;flex-direction:column}
+.card:hover{transform:translateY(-4px);border-color:#444}
+.card-thumb{position:relative;aspect-ratio:4/3;overflow:hidden;background:#111}
+.card-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease,opacity .4s;opacity:0}
+.card-thumb img.ok{opacity:1}
+.card:hover .card-thumb img{transform:scale(1.04)}
+.card-thumb .badge{position:absolute;bottom:.75rem;left:.75rem;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.1);color:#fff;font-size:.72rem;padding:.3rem .7rem;border-radius:100px}
+
+.card-body{padding:1.1rem 1.25rem 1.4rem;flex:1;display:flex;flex-direction:column;gap:.5rem}
+.card-flag{font-size:1.3rem;line-height:1}
+.card-title{font-size:1.1rem;font-weight:500;color:#fff}
+.card-meta{display:flex;gap:1rem;flex-wrap:wrap}
+.card-meta span{font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:.3rem}
+.card-meta span svg{width:12px;height:12px;opacity:.6}
+.card-btn{margin-top:auto;padding-top:.9rem;display:flex;align-items:center;justify-content:space-between}
+.btn{display:inline-flex;align-items:center;gap:.4rem;background:var(--accent);color:#0f0f0f;font-weight:500;font-size:.82rem;padding:.5rem 1.1rem;border-radius:8px;transition:opacity var(--tr)}
+.btn:hover{opacity:.88}
+.btn svg{width:14px;height:14px}
+.count-chip{font-size:.75rem;color:var(--muted)}
+
+/* ── Coming soon card ── */
+.card.soon{opacity:.45;pointer-events:none}
+.card.soon .card-thumb{background:repeating-linear-gradient(45deg,#1a1a1a,#1a1a1a 10px,#161616 10px,#161616 20px)}
+.card.soon .card-thumb::after{content:"Coming soon";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.85rem;letter-spacing:.05em}
+
+/* ── Footer ── */
+.footer{text-align:center;padding:2rem;color:var(--muted);font-size:.8rem;border-top:1px solid var(--border)}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Bafna Family <span>Travels</span></h1>
+  <p>A collection of photo galleries from our adventures around the world. Click any trip to explore the full gallery.</p>
+</div>
+
+<div class="trips" id="trips">
+
+  <!-- UK 2026 -->
+  <a class="card" href="uk-trip-2026/">
+    <div class="card-thumb">
+      <img src="uk-trip-2026/photos/20260505_113311.jpg" alt="UK Trip 2026" loading="lazy">
+      <span class="badge">May 2026</span>
+    </div>
+    <div class="card-body">
+      <div class="card-flag">🇬🇧</div>
+      <div class="card-title">UK Trip 2026</div>
+      <div class="card-meta">
+        <span>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg>
+          19 days · May 3–21
+        </span>
+        <span>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="10" rx="1"/><path d="M2 7h12"/><circle cx="6" cy="5" r=".5" fill="currentColor"/><circle cx="10" cy="5" r=".5" fill="currentColor"/></svg>
+          London · Edinburgh · Bath · more
+        </span>
+      </div>
+      <div class="card-btn">
+        <span class="btn">
+          View gallery
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </span>
+        <span class="count-chip">209 photos</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Placeholder 1 -->
+  <div class="card soon">
+    <div class="card-thumb"></div>
+    <div class="card-body">
+      <div class="card-flag">🗺️</div>
+      <div class="card-title">Your next adventure</div>
+    </div>
+  </div>
+
+  <!-- Placeholder 2 -->
+  <div class="card soon">
+    <div class="card-thumb"></div>
+    <div class="card-body">
+      <div class="card-flag">🗺️</div>
+      <div class="card-title">Your next adventure</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">Bafna Family Travel Gallery · Built with Claude</div>
+
+<script>
+document.querySelectorAll(".card-thumb img").forEach(img => {
+  img.addEventListener("load", () => img.classList.add("ok"));
+  img.addEventListener("error", () => img.classList.add("ok"));
+});
+</script>
+</body>
+</html>
