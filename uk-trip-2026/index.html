@@ -2,169 +2,322 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>UK Trip 2026 — Bafna Family</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#0f0f0f;--surface:#1a1a1a;--surface2:#242424;--border:#2e2e2e;
-  --text:#f0f0f0;--muted:#888;--accent:#e8c97c;
-  --group:#7cb8e8;--pair:#a8d8a8;--solo:#e8c97c;--scenic:#c9a8e8;
-  --radius:10px;--tr:0.22s ease;
-}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+:root{--bg:#0f0f0f;--surf:#1a1a1a;--surf2:#242424;--bdr:#2e2e2e;--txt:#f0f0f0;--mut:#888;--acc:#e8c97c;--tr:.2s ease}
+body{background:var(--bg);color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
 a{color:inherit;text-decoration:none}
-.back{display:inline-flex;align-items:center;gap:.5rem;padding:1.2rem 2rem .5rem;color:var(--muted);font-size:.85rem;transition:var(--tr)}
-.back:hover{color:var(--text)}
-.back svg{width:14px;height:14px}
-.header{padding:1rem 2rem 1.5rem;max-width:1400px;margin:0 auto}
-.header h1{font-size:2rem;font-weight:600;letter-spacing:-.5px;color:#fff}
-.header h1 span{color:var(--accent)}
-.header p{color:var(--muted);margin-top:.4rem;font-size:.95rem}
-.stats{display:flex;gap:1.5rem;margin-top:1.2rem;flex-wrap:wrap}
-.stat{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:.6rem 1rem}
-.stat span{font-size:1.3rem;font-weight:600;color:#fff;display:block}
-.stat small{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
-.controls{max-width:1400px;margin:0 auto;padding:0 2rem 1.5rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
-.filters{display:flex;gap:.5rem;flex-wrap:wrap;flex:1}
-.fb{background:var(--surface);border:1px solid var(--border);color:var(--muted);padding:.45rem 1rem;border-radius:100px;font-size:.82rem;cursor:pointer;transition:var(--tr);white-space:nowrap}
-.fb:hover{border-color:#555;color:var(--text)}
-.fb.active{background:var(--accent);border-color:var(--accent);color:#0f0f0f;font-weight:500}
-.fb.active.tg{background:var(--group);border-color:var(--group);color:#0a1f2e}
-.fb.active.tp{background:var(--pair);border-color:var(--pair);color:#0a1f0a}
-.fb.active.ts{background:var(--solo);border-color:var(--solo);color:#1f160a}
-.fb.active.tn{background:var(--scenic);border-color:var(--scenic);color:#1a0a2e}
-.day-bar{display:flex;gap:.4rem;flex-wrap:wrap;max-width:1400px;margin:0 auto;padding:0 2rem 1.5rem}
-.db{background:var(--surface);border:1px solid var(--border);color:var(--muted);padding:.35rem .75rem;border-radius:6px;font-size:.78rem;cursor:pointer;transition:var(--tr)}
-.db:hover{border-color:#555;color:var(--text)}
-.db.active{background:var(--surface2);border-color:var(--accent);color:var(--accent)}
-.sw{position:relative}
-.sw input{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:.45rem .9rem .45rem 2.2rem;border-radius:100px;font-size:.82rem;width:180px;outline:none;transition:var(--tr)}
-.sw input:focus{border-color:#555;width:220px}
-.sw::before{content:"⌕";position:absolute;left:.7rem;top:50%;transform:translateY(-50%);color:var(--muted);font-size:1rem;pointer-events:none}
-.cl{color:var(--muted);font-size:.82rem;align-self:center;white-space:nowrap}
+
+/* header */
+.hdr{max-width:1400px;margin:0 auto;padding:2rem 2rem 1rem;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.hdr-left h1{font-size:1.8rem;font-weight:600;color:#fff}
+.hdr-left h1 span{color:var(--acc)}
+.hdr-left p{color:var(--mut);font-size:.9rem;margin-top:.3rem}
+.back-link{font-size:.8rem;color:var(--mut);display:flex;align-items:center;gap:.4rem;transition:var(--tr)}
+.back-link:hover{color:var(--txt)}
+.back-link svg{width:14px;height:14px}
+.stats-row{max-width:1400px;margin:0 auto;padding:0 2rem 1.2rem;display:flex;gap:1rem;flex-wrap:wrap}
+.stat{background:var(--surf);border:1px solid var(--bdr);border-radius:8px;padding:.5rem .9rem}
+.stat span{font-size:1.1rem;font-weight:600;color:#fff;display:block}
+.stat small{font-size:.68rem;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+
+/* controls */
+.ctrl{max-width:1400px;margin:0 auto;padding:0 2rem 1rem;display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.fb{background:var(--surf);border:1px solid var(--bdr);color:var(--mut);padding:.38rem .85rem;border-radius:100px;font-size:.78rem;cursor:pointer;transition:var(--tr);white-space:nowrap}
+.fb:hover{border-color:#555;color:var(--txt)}
+.fb.on{border-color:var(--acc);color:var(--acc);background:rgba(232,201,124,.08);font-weight:500}
+.sep{width:1px;height:22px;background:var(--bdr)}
+.srch-w{position:relative}
+.srch-w input{background:var(--surf);border:1px solid var(--bdr);color:var(--txt);padding:.38rem .85rem .38rem 1.9rem;border-radius:100px;font-size:.78rem;width:160px;outline:none;transition:var(--tr)}
+.srch-w input:focus{border-color:#555;width:200px}
+.srch-w::before{content:"⌕";position:absolute;left:.65rem;top:50%;transform:translateY(-50%);color:var(--mut);font-size:.9rem;pointer-events:none}
+.cnt-lbl{font-size:.78rem;color:var(--mut);margin-left:auto}
+.sz-btn{background:var(--surf);border:1px solid var(--bdr);color:var(--mut);padding:.3rem .7rem;border-radius:6px;font-size:.76rem;cursor:pointer;transition:var(--tr)}
+.sz-btn.on{background:var(--surf2);border-color:var(--acc);color:var(--acc)}
+
+/* grid */
 .grid-wrap{max-width:1400px;margin:0 auto;padding:0 2rem 4rem}
-.grid{columns:4 200px;column-gap:10px}
-.gi{break-inside:avoid;margin-bottom:10px;position:relative;cursor:pointer;border-radius:var(--radius);overflow:hidden;background:var(--surface)}
-.gi img{width:100%;display:block;transition:transform .35s ease,opacity .3s;opacity:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px;transition:grid-template-columns var(--tr)}
+.grid.large{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
+.gi{position:relative;aspect-ratio:1;border-radius:9px;overflow:hidden;cursor:pointer;background:var(--surf)}
+.gi img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:transform .3s,opacity .25s}
 .gi img.ok{opacity:1}
-.gi:hover img{transform:scale(1.035)}
-.ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 50%);opacity:0;transition:var(--tr);display:flex;align-items:flex-end;padding:.75rem}
-.gi:hover .ov{opacity:1}
-.om{display:flex;gap:.4rem;align-items:center}
-.td{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.td.group{background:var(--group)}.td.pair{background:var(--pair)}.td.solo{background:var(--solo)}.td.scenic{background:var(--scenic)}
-.od{font-size:.72rem;color:rgba(255,255,255,.8)}
+.gi:hover img{transform:scale(1.04)}
+.gi-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65),transparent 55%);opacity:0;transition:var(--tr);display:flex;flex-direction:column;justify-content:flex-end;padding:.6rem}
+.gi:hover .gi-ov{opacity:1}
+.gi-loc{font-size:.65rem;color:rgba(255,255,255,.9);line-height:1.3}
+.gi-ppl{font-size:.6rem;color:var(--acc);margin-top:1px}
+.gi-tags{display:flex;gap:3px;flex-wrap:wrap;margin-top:3px}
+.gi-tag{font-size:.55rem;background:rgba(255,255,255,.15);color:rgba(255,255,255,.8);padding:1px 5px;border-radius:100px}
 .gi.hidden{display:none}
-.dh{break-inside:avoid;margin-bottom:10px;padding:.5rem .2rem}
-.dh h3{font-size:.78rem;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid var(--border);padding-bottom:.4rem}
-.lb{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:1000;display:none;flex-direction:column;align-items:center;justify-content:center}
+.gi-stars{position:absolute;top:5px;left:5px;font-size:.55rem;color:#fbbf24}
+.gi-kb{position:absolute;top:5px;right:5px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;background:#22c55e;color:#fff}
+.empty-msg{padding:4rem;text-align:center;color:var(--mut)}
+
+/* lightbox */
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:1000;display:none;flex-direction:column;align-items:center;justify-content:center}
 .lb.open{display:flex}
-.lb-iw{max-width:92vw;max-height:85vh;display:flex;align-items:center;justify-content:center}
-.lb img{max-width:92vw;max-height:85vh;object-fit:contain;border-radius:6px}
-.lbc{position:fixed;top:1.2rem;right:1.4rem;background:rgba(255,255,255,.1);border:none;color:#fff;width:38px;height:38px;border-radius:50%;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--tr)}
-.lbc:hover{background:rgba(255,255,255,.2)}
-.lbn{position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:none;color:#fff;width:44px;height:44px;border-radius:50%;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--tr)}
-.lbn:hover{background:rgba(255,255,255,.22)}
-.lbpv{left:1rem}.lbnx{right:1rem}
-.lbca{margin-top:1rem;text-align:center}
-.lbd{color:var(--muted);font-size:.85rem;margin-top:.2rem}
-.lbb{display:inline-block;padding:.2rem .7rem;border-radius:100px;font-size:.72rem;font-weight:500}
-.lbb.group{background:rgba(124,184,232,.2);color:var(--group)}.lbb.pair{background:rgba(168,216,168,.2);color:var(--pair)}
-.lbb.solo{background:rgba(232,201,124,.2);color:var(--solo)}.lbb.scenic{background:rgba(201,168,232,.2);color:var(--scenic)}
-.lbcnt{color:var(--muted);font-size:.8rem;margin-top:.4rem}
-.empty{text-align:center;padding:4rem 2rem;color:var(--muted)}
+.lb-wrap{position:relative;max-width:94vw;max-height:84vh;display:flex;align-items:center;justify-content:center}
+.lb-wrap img{max-width:94vw;max-height:84vh;object-fit:contain;border-radius:6px}
+.lb-close{position:fixed;top:1rem;right:1.2rem;background:rgba(255,255,255,.1);border:none;color:#fff;width:36px;height:36px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--tr)}
+.lb-close:hover{background:rgba(255,255,255,.2)}
+.lb-nav{position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:none;color:#fff;width:42px;height:42px;border-radius:50%;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--tr)}
+.lb-nav:hover{background:rgba(255,255,255,.2)}
+#lb-prev{left:.8rem}#lb-next{right:.8rem}
+.lb-info{margin-top:.9rem;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.3rem}
+.lb-loc{font-size:.85rem;color:rgba(255,255,255,.9)}
+.lb-meta{display:flex;gap:.8rem;align-items:center}
+.lb-ppl{font-size:.75rem;color:var(--acc)}
+.lb-date{font-size:.72rem;color:var(--mut)}
+.lb-tags{display:flex;gap:4px;flex-wrap:wrap;justify-content:center}
+.lb-tag{font-size:.68rem;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);padding:2px 7px;border-radius:100px}
+.lb-cnt{font-size:.7rem;color:var(--mut)}
+.lb-cap{font-size:.78rem;color:rgba(255,255,255,.65);max-width:560px;line-height:1.5;font-style:italic}
+
+/* loading state */
+.loading{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--mut);z-index:500}
 </style>
 </head>
 <body>
-<a class="back" href="../">
-  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg>
-  All trips
-</a>
-<div class="header">
-  <h1>UK Trip 2026 <span>— Best Photos</span></h1>
-  <p>A curated selection from our family adventure across the UK · May 2026</p>
-  <div class="stats">
-    <div class="stat"><span>209</span><small>Photos</small></div>
-    <div class="stat"><span>19</span><small>Days</small></div>
-    <div class="stat"><span id="sg">—</span><small>Group shots</small></div>
-    <div class="stat"><span id="ss">—</span><small>Scenic</small></div>
-    <div class="stat"><span>144</span><small>Locations</small></div>
+
+<div class="loading" id="loading">Loading photos…</div>
+
+<div class="hdr">
+  <div class="hdr-left">
+    <h1>UK Trip 2026 <span>— Best Photos</span></h1>
+    <p>Bafna family adventure across the UK · May 2026</p>
   </div>
+  <a class="back-link" href="../">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg>
+    All trips
+  </a>
 </div>
-<div class="controls">
-  <div class="filters">
-    <button class="fb active" data-t="all">All photos</button>
-    <button class="fb tg" data-t="group">👨‍👩‍👧‍👦 Group</button>
-    <button class="fb tp" data-t="pair">👫 Pair</button>
-    <button class="fb ts" data-t="solo">🧍 Solo</button>
-    <button class="fb tn" data-t="scenic">🏛️ Scenic</button>
-  </div>
-  <div class="sw"><input type="text" id="srch" placeholder="Search by date…"></div>
-  <span class="cl" id="cnt">209 photos</span>
+
+<div class="stats-row" id="stats-row"></div>
+
+<div class="ctrl" id="ctrl-people"></div>
+<div class="ctrl" id="ctrl-location"></div>
+<div class="ctrl" id="ctrl-tags"></div>
+
+<div class="ctrl">
+  <div class="sep"></div>
+  <div class="srch-w"><input type="text" id="srch" placeholder="Search…" oninput="af()"></div>
+  <span class="sz-btn on" id="sz-sm" onclick="setSize('sm')">⊞ Small</span>
+  <span class="sz-btn" id="sz-lg" onclick="setSize('lg')">⊟ Large</span>
+  <span class="cnt-lbl" id="cnt">— photos</span>
 </div>
-<div class="day-bar" id="day-bar"></div>
-<div class="grid-wrap"><div class="grid" id="grid"></div><div class="empty" id="empty" style="display:none"><p>📷 No photos match your filter</p></div></div>
+
+<div class="grid-wrap">
+  <div class="grid" id="grid"></div>
+  <div class="empty-msg" id="empty-msg" style="display:none">No photos match your filters</div>
+</div>
+
 <div class="lb" id="lb">
-  <button class="lbc" id="lbc">✕</button>
-  <button class="lbn lbpv" id="lbp">‹</button>
-  <div class="lb-iw"><img id="lbi" src="" alt=""></div>
-  <button class="lbn lbnx" id="lbx">›</button>
-  <div class="lbca">
-    <span class="lbb" id="lbb"></span>
-    <div class="lbd" id="lbd"></div>
-    <div class="lbcnt" id="lbn2"></div>
+  <button class="lb-close" onclick="closeLB()">✕</button>
+  <button class="lb-nav" id="lb-prev" onclick="navLB(-1)">‹</button>
+  <div class="lb-wrap"><img id="lb-img" src="" alt="" onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s"></div>
+  <button class="lb-nav" id="lb-next" onclick="navLB(1)">›</button>
+  <div class="lb-info">
+    <div class="lb-loc" id="lb-loc"></div>
+    <div class="lb-meta">
+      <span class="lb-ppl" id="lb-ppl"></span>
+      <span class="lb-date" id="lb-date"></span>
+      <span class="lb-cnt" id="lb-cnt"></span>
+    </div>
+    <div class="lb-tags" id="lb-tags"></div>
+    <div class="lb-cap" id="lb-cap"></div>
   </div>
 </div>
+
 <script>
-const P=[{"file": "IMG_2443.jpg", "date": "2026-05-03", "type": "solo", "score": 74.0, "faces": 1, "loc": 0}, {"file": "IMG_2450.jpg", "date": "2026-05-04", "type": "scenic", "score": 79.3, "faces": 0, "loc": 1}, {"file": "IMG_2456.jpg", "date": "2026-05-04", "type": "group", "score": 115.3, "faces": 4, "loc": 2}, {"file": "996F9FE8-F554-417E-AEBC-B3787604EB15.jpg", "date": "2026-05-04", "type": "group", "score": 97.2, "faces": 4, "loc": 3}, {"file": "20260504_110451.jpg", "date": "2026-05-04", "type": "pair", "score": 77.0, "faces": 2, "loc": 4}, {"file": "IMG_2502.jpg", "date": "2026-05-04", "type": "solo", "score": 79.2, "faces": 1, "loc": 5}, {"file": "IMG_2529.jpg", "date": "2026-05-04", "type": "solo", "score": 83.7, "faces": 1, "loc": 6}, {"file": "IMG_2509.jpg", "date": "2026-05-04", "type": "scenic", "score": 44.3, "faces": 0, "loc": 7}, {"file": "IMG_2510.jpg", "date": "2026-05-04", "type": "scenic", "score": 35.4, "faces": 0, "loc": 8}, {"file": "IMG_2512.jpg", "date": "2026-05-04", "type": "solo", "score": 57.0, "faces": 1, "loc": 9}, {"file": "IMG_2534.jpg", "date": "2026-05-05", "type": "group", "score": 114.8, "faces": 5, "loc": 10}, {"file": "IMG_2541.jpg", "date": "2026-05-05", "type": "group", "score": 113.6, "faces": 4, "loc": 11}, {"file": "IMG_2545.jpg", "date": "2026-05-05", "type": "solo", "score": 118.5, "faces": 1, "loc": 11}, {"file": "20260505_101844.jpg", "date": "2026-05-05", "type": "group", "score": 113.4, "faces": 4, "loc": 11}, {"file": "IMG_2585.jpg", "date": "2026-05-05", "type": "group", "score": 111.0, "faces": 4, "loc": 11}, {"file": "20260505_111049.jpg", "date": "2026-05-05", "type": "group", "score": 110.9, "faces": 4, "loc": 11}, {"file": "IMG_2625.jpg", "date": "2026-05-05", "type": "group", "score": 113.6, "faces": 4, "loc": 11}, {"file": "20260505_113311.jpg", "date": "2026-05-05", "type": "group", "score": 125.5, "faces": 4, "loc": 11}, {"file": "20260505_115545.jpg", "date": "2026-05-05", "type": "group", "score": 110.7, "faces": 3, "loc": 11}, {"file": "20260505_131608.jpg", "date": "2026-05-05", "type": "group", "score": 114.6, "faces": 3, "loc": 11}, {"file": "IMG_2680.jpg", "date": "2026-05-05", "type": "group", "score": 115.5, "faces": 4, "loc": 11}, {"file": "IMG_2688.jpg", "date": "2026-05-05", "type": "group", "score": 116.4, "faces": 3, "loc": 12}, {"file": "IMG_2689.jpg", "date": "2026-05-05", "type": "pair", "score": 103.0, "faces": 2, "loc": 12}, {"file": "IMG_2692.jpg", "date": "2026-05-05", "type": "group", "score": 107.1, "faces": 3, "loc": 12}, {"file": "20260505_151724.jpg", "date": "2026-05-05", "type": "group", "score": 115.8, "faces": 5, "loc": 12}, {"file": "IMG_2745.jpg", "date": "2026-05-05", "type": "scenic", "score": 91.3, "faces": 0, "loc": 13}, {"file": "20260505_215754.jpg", "date": "2026-05-05", "type": "scenic", "score": 85.6, "faces": 0, "loc": 14}, {"file": "IMG_2755.jpg", "date": "2026-05-06", "type": "group", "score": 113.0, "faces": 3, "loc": 15}, {"file": "20260506_110658.jpg", "date": "2026-05-06", "type": "group", "score": 112.7, "faces": 4, "loc": 15}, {"file": "20260506_113455.jpg", "date": "2026-05-06", "type": "group", "score": 110.7, "faces": 4, "loc": 15}, {"file": "20260506_115445.jpg", "date": "2026-05-06", "type": "pair", "score": 105.6, "faces": 2, "loc": 15}, {"file": "20260506_115747.jpg", "date": "2026-05-06", "type": "group", "score": 114.9, "faces": 3, "loc": 15}, {"file": "20260506_121413.jpg", "date": "2026-05-06", "type": "group", "score": 107.1, "faces": 4, "loc": 15}, {"file": "IMG_2784.jpg", "date": "2026-05-06", "type": "pair", "score": 106.7, "faces": 2, "loc": 16}, {"file": "IMG_2794.jpg", "date": "2026-05-06", "type": "solo", "score": 93.5, "faces": 1, "loc": 17}, {"file": "20260506_153943.jpg", "date": "2026-05-06", "type": "solo", "score": 95.7, "faces": 1, "loc": 18}, {"file": "20260506_160909.jpg", "date": "2026-05-06", "type": "group", "score": 111.4, "faces": 4, "loc": 19}, {"file": "20260506_165711.jpg", "date": "2026-05-06", "type": "group", "score": 108.0, "faces": 3, "loc": 20}, {"file": "IMG_2822.jpg", "date": "2026-05-06", "type": "scenic", "score": 92.5, "faces": 0, "loc": 21}, {"file": "IMG_2824.jpg", "date": "2026-05-06", "type": "scenic", "score": 94.5, "faces": 0, "loc": 22}, {"file": "IMG_2829.jpg", "date": "2026-05-06", "type": "group", "score": 90.2, "faces": 3, "loc": 23}, {"file": "IMG_2834.jpg", "date": "2026-05-07", "type": "pair", "score": 115.4, "faces": 2, "loc": 24}, {"file": "IMG_2843.jpg", "date": "2026-05-07", "type": "pair", "score": 108.5, "faces": 2, "loc": 24}, {"file": "IMG_2848.jpg", "date": "2026-05-07", "type": "scenic", "score": 97.0, "faces": 0, "loc": 25}, {"file": "IMG_2857.jpg", "date": "2026-05-07", "type": "group", "score": 103.9, "faces": 3, "loc": 26}, {"file": "IMG_2862.jpg", "date": "2026-05-07", "type": "pair", "score": 103.2, "faces": 2, "loc": 26}, {"file": "20260507_144213.jpg", "date": "2026-05-07", "type": "group", "score": 104.4, "faces": 3, "loc": 26}, {"file": "IMG_2900.jpg", "date": "2026-05-07", "type": "solo", "score": 102.6, "faces": 1, "loc": 26}, {"file": "IMG_2918.jpg", "date": "2026-05-07", "type": "group", "score": 103.0, "faces": 3, "loc": 27}, {"file": "IMG_2919.jpg", "date": "2026-05-07", "type": "pair", "score": 103.3, "faces": 2, "loc": 27}, {"file": "IMG_2947.jpg", "date": "2026-05-07", "type": "scenic", "score": 93.1, "faces": 0, "loc": 28}, {"file": "IMG_2948.jpg", "date": "2026-05-07", "type": "group", "score": 93.3, "faces": 5, "loc": 29}, {"file": "IMG_2949.jpg", "date": "2026-05-07", "type": "scenic", "score": 82.9, "faces": 0, "loc": 30}, {"file": "IMG_2954.jpg", "date": "2026-05-08", "type": "pair", "score": 107.8, "faces": 2, "loc": 31}, {"file": "IMG_2988.jpg", "date": "2026-05-08", "type": "solo", "score": 102.7, "faces": 1, "loc": 32}, {"file": "IMG_2996.jpg", "date": "2026-05-08", "type": "solo", "score": 103.8, "faces": 1, "loc": 32}, {"file": "IMG_2999.jpg", "date": "2026-05-08", "type": "pair", "score": 109.2, "faces": 2, "loc": 32}, {"file": "795F58BD-D71B-4986-AA9B-D519660A850B.jpg", "date": "2026-05-08", "type": "group", "score": 114.5, "faces": 3, "loc": 33}, {"file": "20260508_145208.jpg", "date": "2026-05-08", "type": "solo", "score": 105.8, "faces": 1, "loc": 33}, {"file": "20260508_161802.jpg", "date": "2026-05-08", "type": "group", "score": 107.6, "faces": 3, "loc": 34}, {"file": "IMG_3034.jpg", "date": "2026-05-08", "type": "pair", "score": 104.6, "faces": 2, "loc": 34}, {"file": "0E32070A-7840-466F-B6F8-E517240E9AD2.jpg", "date": "2026-05-08", "type": "group", "score": 70.0, "faces": 3, "loc": 35}, {"file": "IMG_3040.jpg", "date": "2026-05-08", "type": "solo", "score": 66.5, "faces": 1, "loc": 36}, {"file": "20260508_211940.jpg", "date": "2026-05-08", "type": "scenic", "score": 40.4, "faces": 0, "loc": 37}, {"file": "7bcc6d4f-272d-4cd6-a372-e68ea4b4e703.jpg", "date": "2026-05-08", "type": "scenic", "score": 67.0, "faces": 0, "loc": 38}, {"file": "20260509_065553.jpg", "date": "2026-05-09", "type": "solo", "score": 66.1, "faces": 1, "loc": 39}, {"file": "20260509_083957.jpg", "date": "2026-05-09", "type": "solo", "score": 99.3, "faces": 1, "loc": 40}, {"file": "20260509_094212.jpg", "date": "2026-05-09", "type": "group", "score": 117.0, "faces": 5, "loc": 41}, {"file": "IMG_3066.jpg", "date": "2026-05-09", "type": "group", "score": 110.0, "faces": 3, "loc": 41}, {"file": "IMG_3071.jpg", "date": "2026-05-09", "type": "solo", "score": 97.7, "faces": 1, "loc": 42}, {"file": "20260509_130954.jpg", "date": "2026-05-09", "type": "group", "score": 110.0, "faces": 3, "loc": 43}, {"file": "IMG_3114.jpg", "date": "2026-05-09", "type": "group", "score": 111.0, "faces": 4, "loc": 43}, {"file": "IMG_3117.jpg", "date": "2026-05-09", "type": "group", "score": 120.7, "faces": 6, "loc": 43}, {"file": "IMG_3126.jpg", "date": "2026-05-09", "type": "group", "score": 110.9, "faces": 4, "loc": 43}, {"file": "IMG_3148.jpg", "date": "2026-05-09", "type": "pair", "score": 103.5, "faces": 2, "loc": 44}, {"file": "IMG_3153.jpg", "date": "2026-05-09", "type": "group", "score": 109.0, "faces": 3, "loc": 44}, {"file": "IMG_3161.jpg", "date": "2026-05-09", "type": "scenic", "score": 86.9, "faces": 0, "loc": 45}, {"file": "20260509_194530.jpg", "date": "2026-05-09", "type": "solo", "score": 79.6, "faces": 1, "loc": 46}, {"file": "IMG_3170.jpg", "date": "2026-05-09", "type": "group", "score": 82.9, "faces": 4, "loc": 47}, {"file": "IMG_3222.jpg", "date": "2026-05-10", "type": "group", "score": 111.4, "faces": 3, "loc": 48}, {"file": "IMG_3228.jpg", "date": "2026-05-10", "type": "scenic", "score": 59.9, "faces": 0, "loc": 49}, {"file": "IMG_553C1EB2-86AB-4DD0-8599-FA1CE6894F17.jpg", "date": "2026-05-10", "type": "scenic", "score": 83.5, "faces": 0, "loc": 50}, {"file": "IMG_3232.jpg", "date": "2026-05-10", "type": "scenic", "score": 85.3, "faces": 0, "loc": 51}, {"file": "IMG_3233.jpg", "date": "2026-05-10", "type": "group", "score": 117.1, "faces": 4, "loc": 52}, {"file": "20260510_130554.jpg", "date": "2026-05-10", "type": "group", "score": 110.4, "faces": 3, "loc": 52}, {"file": "IMG_3247.jpg", "date": "2026-05-10", "type": "pair", "score": 100.9, "faces": 2, "loc": 53}, {"file": "IMG_3257.jpg", "date": "2026-05-10", "type": "scenic", "score": 91.8, "faces": 0, "loc": 54}, {"file": "20260510_183419.jpg", "date": "2026-05-10", "type": "scenic", "score": 58.5, "faces": 0, "loc": 55}, {"file": "20260510_191429.jpg", "date": "2026-05-10", "type": "scenic", "score": 70.9, "faces": 0, "loc": 56}, {"file": "20260510_195610.jpg", "date": "2026-05-10", "type": "scenic", "score": 86.9, "faces": 0, "loc": 57}, {"file": "20260510_204229.jpg", "date": "2026-05-10", "type": "group", "score": 107.2, "faces": 3, "loc": 58}, {"file": "20260510_205624.jpg", "date": "2026-05-10", "type": "pair", "score": 109.4, "faces": 2, "loc": 58}, {"file": "IMG_3294.jpg", "date": "2026-05-10", "type": "group", "score": 109.2, "faces": 3, "loc": 58}, {"file": "3e590083-9c05-4dce-b686-9512e1688157.jpg", "date": "2026-05-11", "type": "solo", "score": 92.0, "faces": 1, "loc": 59}, {"file": "IMG_3320.jpg", "date": "2026-05-11", "type": "group", "score": 111.9, "faces": 3, "loc": 60}, {"file": "20260511_102836.jpg", "date": "2026-05-11", "type": "scenic", "score": 90.6, "faces": 0, "loc": 61}, {"file": "IMG_3325.jpg", "date": "2026-05-11", "type": "solo", "score": 102.3, "faces": 1, "loc": 62}, {"file": "20260511_113422.jpg", "date": "2026-05-11", "type": "solo", "score": 102.5, "faces": 1, "loc": 62}, {"file": "20260511_122846.jpg", "date": "2026-05-11", "type": "scenic", "score": 95.5, "faces": 0, "loc": 63}, {"file": "20260511_134204.jpg", "date": "2026-05-11", "type": "group", "score": 112.9, "faces": 4, "loc": 64}, {"file": "20260511_134220.jpg", "date": "2026-05-11", "type": "pair", "score": 106.9, "faces": 2, "loc": 64}, {"file": "20260511_134617.jpg", "date": "2026-05-11", "type": "group", "score": 108.4, "faces": 3, "loc": 64}, {"file": "IMG_3351.jpg", "date": "2026-05-11", "type": "group", "score": 117.7, "faces": 5, "loc": 65}, {"file": "IMG_3352.jpg", "date": "2026-05-11", "type": "group", "score": 116.1, "faces": 4, "loc": 65}, {"file": "IMG_3419.jpg", "date": "2026-05-11", "type": "solo", "score": 107.1, "faces": 1, "loc": 66}, {"file": "IMG_3425.jpg", "date": "2026-05-11", "type": "solo", "score": 109.8, "faces": 1, "loc": 66}, {"file": "20260511_172534.jpg", "date": "2026-05-11", "type": "pair", "score": 101.6, "faces": 2, "loc": 66}, {"file": "20260511_172810.jpg", "date": "2026-05-11", "type": "group", "score": 111.2, "faces": 3, "loc": 66}, {"file": "5eaac9e7-4a28-4a56-bb40-ce19a38cb1b5.jpg", "date": "2026-05-11", "type": "pair", "score": 107.1, "faces": 2, "loc": 67}, {"file": "IMG_3491.jpg", "date": "2026-05-11", "type": "scenic", "score": 71.2, "faces": 0, "loc": 68}, {"file": "c49f2427-5efe-4797-b7fb-bd67c2ec6c78.jpg", "date": "2026-05-11", "type": "solo", "score": 71.9, "faces": 1, "loc": 69}, {"file": "IMG_3498.jpg", "date": "2026-05-11", "type": "scenic", "score": 53.9, "faces": 0, "loc": 70}, {"file": "20260512_071440.jpg", "date": "2026-05-12", "type": "solo", "score": 101.0, "faces": 1, "loc": 71}, {"file": "IMG_4A2F8033-5AA5-4204-AF24-BA240261A35C.jpg", "date": "2026-05-12", "type": "scenic", "score": 55.3, "faces": 0, "loc": 72}, {"file": "IMG_3505.jpg", "date": "2026-05-12", "type": "group", "score": 114.0, "faces": 4, "loc": 73}, {"file": "20260512_112023.jpg", "date": "2026-05-12", "type": "group", "score": 112.3, "faces": 3, "loc": 73}, {"file": "20260512_114735.jpg", "date": "2026-05-12", "type": "pair", "score": 107.4, "faces": 2, "loc": 73}, {"file": "IMG_3554.jpg", "date": "2026-05-12", "type": "pair", "score": 113.9, "faces": 2, "loc": 73}, {"file": "20260512_130356.jpg", "date": "2026-05-12", "type": "group", "score": 110.1, "faces": 3, "loc": 74}, {"file": "20260512_133435.jpg", "date": "2026-05-12", "type": "pair", "score": 102.7, "faces": 2, "loc": 75}, {"file": "IMG_3574.jpg", "date": "2026-05-12", "type": "group", "score": 106.4, "faces": 6, "loc": 76}, {"file": "20260512_150536.jpg", "date": "2026-05-12", "type": "solo", "score": 115.0, "faces": 1, "loc": 76}, {"file": "IMG_3604.jpg", "date": "2026-05-12", "type": "scenic", "score": 94.6, "faces": 0, "loc": 77}, {"file": "IMG_3605.jpg", "date": "2026-05-12", "type": "solo", "score": 75.3, "faces": 1, "loc": 78}, {"file": "IMG_3628.jpg", "date": "2026-05-12", "type": "solo", "score": 97.3, "faces": 1, "loc": 79}, {"file": "IMG_3657.jpg", "date": "2026-05-12", "type": "scenic", "score": 92.6, "faces": 0, "loc": 80}, {"file": "IMG_3666.jpg", "date": "2026-05-12", "type": "solo", "score": 95.7, "faces": 1, "loc": 81}, {"file": "IMG_3671.jpg", "date": "2026-05-12", "type": "solo", "score": 88.6, "faces": 1, "loc": 82}, {"file": "20260512_214613.jpg", "date": "2026-05-12", "type": "scenic", "score": 55.7, "faces": 0, "loc": 83}, {"file": "c52986c5-de51-4826-a23a-a8a32df7058e.jpg", "date": "2026-05-12", "type": "pair", "score": 93.9, "faces": 2, "loc": 84}, {"file": "a9e1a012-533f-4584-a749-6e31a4577afb.jpg", "date": "2026-05-13", "type": "solo", "score": 75.4, "faces": 1, "loc": 85}, {"file": "20260513_060054.jpg", "date": "2026-05-13", "type": "solo", "score": 101.9, "faces": 1, "loc": 86}, {"file": "20260513_081057.jpg", "date": "2026-05-13", "type": "solo", "score": 98.5, "faces": 1, "loc": 87}, {"file": "IMG_3679.jpg", "date": "2026-05-13", "type": "group", "score": 108.6, "faces": 3, "loc": 88}, {"file": "IMG_3686.jpg", "date": "2026-05-13", "type": "scenic", "score": 81.1, "faces": 0, "loc": 89}, {"file": "IMG_3687.jpg", "date": "2026-05-13", "type": "scenic", "score": 94.4, "faces": 0, "loc": 90}, {"file": "IMG_3696.jpg", "date": "2026-05-13", "type": "solo", "score": 102.5, "faces": 1, "loc": 91}, {"file": "IMG_3704.jpg", "date": "2026-05-13", "type": "pair", "score": 103.2, "faces": 2, "loc": 91}, {"file": "20260513_130108.jpg", "date": "2026-05-13", "type": "scenic", "score": 85.3, "faces": 0, "loc": 92}, {"file": "IMG_3714.jpg", "date": "2026-05-13", "type": "scenic", "score": 95.7, "faces": 0, "loc": 93}, {"file": "IMG_3732.jpg", "date": "2026-05-13", "type": "solo", "score": 93.8, "faces": 1, "loc": 94}, {"file": "IMG_3738.jpg", "date": "2026-05-13", "type": "solo", "score": 100.9, "faces": 1, "loc": 95}, {"file": "20260513_194114.jpg", "date": "2026-05-13", "type": "scenic", "score": 74.2, "faces": 0, "loc": 96}, {"file": "20260513_210405.jpg", "date": "2026-05-13", "type": "solo", "score": 82.5, "faces": 1, "loc": 97}, {"file": "IMG_3754.jpg", "date": "2026-05-14", "type": "scenic", "score": 62.3, "faces": 0, "loc": 98}, {"file": "20260514_101838.jpg", "date": "2026-05-14", "type": "group", "score": 110.1, "faces": 5, "loc": 99}, {"file": "20260514_102412.jpg", "date": "2026-05-14", "type": "group", "score": 110.1, "faces": 4, "loc": 99}, {"file": "IMG_3779.jpg", "date": "2026-05-14", "type": "solo", "score": 99.7, "faces": 1, "loc": 100}, {"file": "IMG_3789.jpg", "date": "2026-05-14", "type": "solo", "score": 101.4, "faces": 1, "loc": 101}, {"file": "20260514_121851.jpg", "date": "2026-05-14", "type": "solo", "score": 97.2, "faces": 1, "loc": 102}, {"file": "IMG_3800.jpg", "date": "2026-05-14", "type": "group", "score": 121.0, "faces": 4, "loc": 102}, {"file": "IMG_3803.jpg", "date": "2026-05-14", "type": "solo", "score": 98.3, "faces": 1, "loc": 102}, {"file": "20260514_123948.jpg", "date": "2026-05-14", "type": "group", "score": 104.8, "faces": 3, "loc": 102}, {"file": "20260514_132223.jpg", "date": "2026-05-14", "type": "solo", "score": 96.8, "faces": 1, "loc": 102}, {"file": "IMG_3826.jpg", "date": "2026-05-14", "type": "solo", "score": 97.6, "faces": 1, "loc": 102}, {"file": "IMG_3867.jpg", "date": "2026-05-14", "type": "solo", "score": 97.7, "faces": 1, "loc": 103}, {"file": "20260514_161824.jpg", "date": "2026-05-14", "type": "solo", "score": 99.3, "faces": 1, "loc": 104}, {"file": "IMG_3868.jpg", "date": "2026-05-14", "type": "scenic", "score": 53.5, "faces": 0, "loc": 105}, {"file": "IMG_3878.jpg", "date": "2026-05-14", "type": "solo", "score": 79.6, "faces": 1, "loc": 106}, {"file": "197877D5-62B1-4E96-865C-8BD87134EAD1.jpg", "date": "2026-05-15", "type": "solo", "score": 99.1, "faces": 1, "loc": 107}, {"file": "20260515_083751.jpg", "date": "2026-05-15", "type": "scenic", "score": 91.0, "faces": 0, "loc": 108}, {"file": "IMG_3888.jpg", "date": "2026-05-15", "type": "group", "score": 111.1, "faces": 3, "loc": 109}, {"file": "20260515_095519.jpg", "date": "2026-05-15", "type": "scenic", "score": 94.4, "faces": 0, "loc": 110}, {"file": "20260515_102708.jpg", "date": "2026-05-15", "type": "group", "score": 109.2, "faces": 4, "loc": 111}, {"file": "IMG_3917.jpg", "date": "2026-05-15", "type": "group", "score": 102.7, "faces": 5, "loc": 111}, {"file": "20260515_124600.jpg", "date": "2026-05-15", "type": "group", "score": 108.8, "faces": 3, "loc": 112}, {"file": "20260515_124622.jpg", "date": "2026-05-15", "type": "group", "score": 100.1, "faces": 5, "loc": 112}, {"file": "20260515_124638.jpg", "date": "2026-05-15", "type": "pair", "score": 102.2, "faces": 2, "loc": 112}, {"file": "IMG_3995.jpg", "date": "2026-05-15", "type": "group", "score": 109.5, "faces": 3, "loc": 112}, {"file": "20260515_140435.jpg", "date": "2026-05-15", "type": "group", "score": 112.3, "faces": 3, "loc": 113}, {"file": "20260515_140447.jpg", "date": "2026-05-15", "type": "group", "score": 116.8, "faces": 4, "loc": 113}, {"file": "IMG_4059.jpg", "date": "2026-05-15", "type": "pair", "score": 107.2, "faces": 2, "loc": 113}, {"file": "IMG_4060.jpg", "date": "2026-05-15", "type": "pair", "score": 107.8, "faces": 2, "loc": 113}, {"file": "IMG_4062.jpg", "date": "2026-05-15", "type": "group", "score": 112.3, "faces": 3, "loc": 113}, {"file": "20260515_150239.jpg", "date": "2026-05-15", "type": "group", "score": 116.8, "faces": 4, "loc": 113}, {"file": "20260515_161813.jpg", "date": "2026-05-15", "type": "solo", "score": 100.9, "faces": 1, "loc": 114}, {"file": "20260515_162055.jpg", "date": "2026-05-15", "type": "group", "score": 107.1, "faces": 3, "loc": 114}, {"file": "IMG_4101.jpg", "date": "2026-05-15", "type": "scenic", "score": 93.3, "faces": 0, "loc": 115}, {"file": "IMG_4119.jpg", "date": "2026-05-15", "type": "scenic", "score": 96.6, "faces": 0, "loc": 116}, {"file": "IMG_4129.jpg", "date": "2026-05-15", "type": "solo", "score": 98.9, "faces": 1, "loc": 117}, {"file": "IMG_4138.jpg", "date": "2026-05-15", "type": "group", "score": 119.4, "faces": 4, "loc": 118}, {"file": "20260515_224858.jpg", "date": "2026-05-15", "type": "scenic", "score": 48.6, "faces": 0, "loc": 119}, {"file": "IMG_4152.jpg", "date": "2026-05-16", "type": "solo", "score": 56.4, "faces": 1, "loc": 120}, {"file": "20260516_110642.jpg", "date": "2026-05-16", "type": "pair", "score": 62.8, "faces": 2, "loc": 121}, {"file": "IMG_4153.jpg", "date": "2026-05-16", "type": "group", "score": 109.1, "faces": 3, "loc": 122}, {"file": "20260516_124030.jpg", "date": "2026-05-16", "type": "group", "score": 106.4, "faces": 3, "loc": 122}, {"file": "IMG_4158.jpg", "date": "2026-05-16", "type": "group", "score": 114.8, "faces": 3, "loc": 123}, {"file": "IMG_4164.jpg", "date": "2026-05-16", "type": "pair", "score": 104.8, "faces": 2, "loc": 124}, {"file": "IMG_4165.jpg", "date": "2026-05-16", "type": "group", "score": 105.3, "faces": 3, "loc": 124}, {"file": "IMG_4174.jpg", "date": "2026-05-16", "type": "solo", "score": 102.6, "faces": 1, "loc": 124}, {"file": "20260516_194917.jpg", "date": "2026-05-16", "type": "scenic", "score": 51.6, "faces": 0, "loc": 125}, {"file": "IMG_4214.jpg", "date": "2026-05-16", "type": "group", "score": 92.9, "faces": 3, "loc": 126}, {"file": "IMG_4225.jpg", "date": "2026-05-17", "type": "pair", "score": 100.3, "faces": 2, "loc": 127}, {"file": "IMG_4229.jpg", "date": "2026-05-17", "type": "solo", "score": 81.0, "faces": 1, "loc": 128}, {"file": "20260517_120259.jpg", "date": "2026-05-17", "type": "pair", "score": 103.9, "faces": 2, "loc": 129}, {"file": "IMG_4232.jpg", "date": "2026-05-17", "type": "scenic", "score": 44.0, "faces": 0, "loc": 130}, {"file": "20260518_041046.jpg", "date": "2026-05-18", "type": "group", "score": 86.1, "faces": 5, "loc": 131}, {"file": "IMG_4236.jpg", "date": "2026-05-18", "type": "scenic", "score": 69.5, "faces": 0, "loc": 132}, {"file": "BF8DEBFF-33F7-4D2F-BE5A-6F79DCE1F2AB.jpg", "date": "2026-05-19", "type": "solo", "score": 102.4, "faces": 1, "loc": 133}, {"file": "IMG_4249.jpg", "date": "2026-05-19", "type": "scenic", "score": 47.4, "faces": 0, "loc": 134}, {"file": "IMG_4251.jpg", "date": "2026-05-19", "type": "solo", "score": 90.7, "faces": 1, "loc": 135}, {"file": "IMG_4252.jpg", "date": "2026-05-19", "type": "solo", "score": 92.7, "faces": 1, "loc": 136}, {"file": "IMG_4254.jpg", "date": "2026-05-20", "type": "scenic", "score": 73.9, "faces": 0, "loc": 137}, {"file": "b05c119e-46c0-4f3b-a8a8-aefa68f69242.jpg", "date": "2026-05-20", "type": "pair", "score": 103.3, "faces": 2, "loc": 138}, {"file": "A5F32CCD-2D6B-4642-935F-6539A69845F0.jpg", "date": "2026-05-20", "type": "group", "score": 70.6, "faces": 4, "loc": 139}, {"file": "IMG_4295.jpg", "date": "2026-05-20", "type": "pair", "score": 60.3, "faces": 2, "loc": 140}, {"file": "IMG_4298.jpg", "date": "2026-05-20", "type": "scenic", "score": 50.1, "faces": 0, "loc": 141}, {"file": "AQPB5eezl6aSPSWXV5W8zh7sju1ud2yrro-PPUlksemjKkk6xmQohEARUzf5VgJDkf6dosDCYaJDFKUFHlPcbcAm.jpg", "date": "2026-05-21", "type": "solo", "score": 61.9, "faces": 1, "loc": 142}, {"file": "AQOWAkQXlBKn6UF6gsbwh4WaVfmYJmC2GWnGsj5-LL2V4fF2Xr7NtT27Jq612Std0IZ0diOod2Krrsa3gZLhGomF.jpg", "date": "2026-05-21", "type": "group", "score": 60.5, "faces": 3, "loc": 143}];
-const F="photos/";
-const TL={group:"Group shot",pair:"Pair",solo:"Solo",scenic:"Scenic"};
-const DN=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-const MN=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-function fd(d){const t=new Date(d+"T12:00:00");return DN[t.getDay()]+" "+t.getDate()+" "+MN[t.getMonth()];}
-let ct={group:0,pair:0,solo:0,scenic:0};P.forEach(p=>ct[p.type]++);
-document.getElementById("sg").textContent=ct.group;document.getElementById("ss").textContent=ct.scenic;
-const days=[...new Set(P.map(p=>p.date))].sort();
-const db=document.getElementById("day-bar");
-const ab=document.createElement("button");ab.className="db active";ab.textContent="All days";ab.dataset.d="all";db.appendChild(ab);
-days.forEach(d=>{const b=document.createElement("button");b.className="db";b.textContent=fd(d);b.dataset.d=d;db.appendChild(b);});
-let aT="all",aD="all",sQ="";
-const grid=document.getElementById("grid");let gi=[];
-const bD={};P.forEach((p,i)=>{(bD[p.date]=bD[p.date]||[]).push({p,i});});
-days.forEach(day=>{
-  const h=document.createElement("div");h.className="dh";h.dataset.day=day;h.innerHTML=`<h3>${fd(day)}</h3>`;grid.appendChild(h);
-  bD[day].forEach(({p,i})=>{
-    const el=document.createElement("div");el.className="gi";el.dataset.t=p.type;el.dataset.d=p.date;
-    el.innerHTML=`<img loading="lazy" src="${F}${p.file}" alt=""><div class="ov"><div class="om"><span class="td ${p.type}"></span><span class="od">${fd(p.date)}</span></div></div>`;
-    const img=el.querySelector("img");
-    img.addEventListener("load",()=>img.classList.add("ok"));
-    img.addEventListener("error",()=>{img.classList.add("ok");img.style.minHeight="100px";});
-    el.addEventListener("click",()=>oLB(i));
-    grid.appendChild(el);gi.push({el,photo:p,idx:i});
+const FILES = ["20260504-flight-bom-to-lhr-all4.jpg", "20260504-india-mumbai-airport-departure-01.jpg", "20260504-india-mumbai-airport-departure-02.jpg", "20260505-london-bus-stop-paresh-ansh-samyra-01.jpg", "20260505-london-bus-stop-paresh-ansh-samyra-02.jpg", "20260505-london-bus-stop-paresh-ansh-samyra-03.jpg", "20260505-london-bus-stop-paresh-ansh-samyra-04.jpg", "20260505-london-bus-stop-paresh-ansh-samyra-05.jpg", "20260505-london-bus-stop-paresh-ansh-samyra-06.jpg", "20260505-london-bus-stop-paresh-ansh-samyra-07.jpg", "20260505-london-hotel-indian-snacks.jpg", "20260505-london-hyde-park-namrata-01.jpg", "20260505-london-hyde-park-namrata-02.jpg", "20260505-london-hyde-park-namrata-03.jpg", "20260505-london-hyde-park-namrata-04.jpg", "20260505-london-hyde-park-namrata-05.jpg", "20260505-london-hyde-park-namrata-06.jpg", "20260505-london-hyde-park-namrata-07.jpg", "20260505-london-hyde-park-namrata-08.jpg", "20260505-london-hyde-park-namrata-09.jpg", "20260505-london-hyde-park-namrata-10.jpg", "20260505-london-hyde-park-namrata-11.jpg", "20260505-london-hyde-park-namrata-12.jpg", "20260505-london-hyde-park-namrata-13.jpg", "20260505-london-hyde-park-namrata-14.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-01.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-02.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-03.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-04.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-05.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-06.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-07.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-08.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-09.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-10.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-11.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-12.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-13.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-14.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-15.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-16.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-17.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-18.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-19.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-20.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-21.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-22.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-23.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-24.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-25.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-26.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-27.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-28.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-29.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-30.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-31.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-32.jpg", "20260505-london-parliament-square-westminster-namrata-ansh-samyra-33.jpg", "20260506-london-lords-cricket-ground-ansh-01.jpg", "20260506-london-lords-cricket-ground-ansh-02.jpg", "20260506-london-lords-cricket-ground-ansh-03.jpg", "20260506-london-lords-cricket-ground-ansh-04.jpg", "20260506-london-lords-cricket-ground-ansh-05.jpg", "20260506-london-lords-cricket-ground-ansh-06.jpg", "20260506-london-lords-cricket-ground-ansh-07.jpg", "20260506-london-lords-cricket-ground-ansh-08.jpg", "20260506-london-lords-cricket-ground-ansh-09.jpg", "20260506-london-lords-cricket-ground-ansh-10.jpg", "20260506-london-lords-cricket-ground-ansh-11.jpg", "20260506-london-lords-cricket-ground-ansh-12.jpg", "20260506-london-lords-cricket-ground-ansh-13.jpg", "20260506-london-lords-cricket-ground-ansh-14.jpg", "20260506-london-lords-cricket-ground-ansh-15.jpg", "20260506-london-lords-cricket-ground-ansh-16.jpg", "20260506-london-restaurant-pizza-express-paresh-namrata-01.jpg", "20260506-london-restaurant-pizza-express-paresh-namrata-02.jpg", "20260506-london-tower-bridge-paresh-namrata-01.jpg", "20260506-london-tower-bridge-paresh-namrata-02.jpg", "20260506-london-tower-bridge-paresh-namrata-03.jpg", "20260506-london-tower-bridge-paresh-namrata-04.jpg", "20260506-london-tower-bridge-paresh-namrata-05.jpg", "20260506-london-tower-bridge-paresh-namrata-06.jpg", "20260506-london-tower-bridge.jpg", "20260506-london-tower-of-london-01.jpg", "20260506-london-tower-of-london-02.jpg", "20260506-london-tower-of-london-03.jpg", "20260507-london-park-plaza-mildred-restaurant-all4-01.jpg", "20260507-london-park-plaza-mildred-restaurant-all4-02.jpg", "20260507-london-science-museum-samyra-01.jpg", "20260507-london-science-museum-samyra-02.jpg", "20260507-london-warner-bros-hp-studio-ansh.jpg", "20260507-london-warner-bros-hp-studio-diagon-alley-paresh-namrata-01.jpg", "20260507-london-warner-bros-hp-studio-diagon-alley-paresh-namrata-02.jpg", "20260507-london-warner-bros-hp-studio-diagon-alley-paresh-namrata-03.jpg", "20260507-london-warner-bros-hp-studio-diagon-alley-paresh-namrata-04.jpg", "20260507-london-warner-bros-hp-studio-platform9-ansh-01.jpg", "20260507-london-warner-bros-hp-studio-platform9-ansh-02.jpg", "20260507-london-warner-bros-hp-studio-platform9-ansh-03.jpg", "20260507-london-warner-bros-hp-studio-platform9-ansh-04.jpg", "20260507-london-warner-bros-hp-studio-tavern-paresh-ansh-samyra-01.jpg", "20260507-london-warner-bros-hp-studio-tavern-paresh-ansh-samyra-02.jpg", "20260507-london-warner-bros-hp-studio-tavern-paresh-ansh-samyra-03.jpg", "20260507-london-warner-bros-hp-studio-tavern-paresh-ansh-samyra-04.jpg", "20260508-london-dishoom-indian-restaurant-01.jpg", "20260508-london-dishoom-indian-restaurant-02.jpg", "20260508-london-dishoom-indian-restaurant-03.jpg", "20260508-london-dishoom-indian-restaurant-04.jpg", "20260508-london-dishoom-indian-restaurant-05.jpg", "20260508-london-hop-on-hop-off-bus-all4.jpg", "20260508-windsor-legoland-entrance-all4.jpg", "20260508-windsor-legoland-namrata.jpg", "20260508-windsor-legoland-samyra-01.jpg", "20260508-windsor-legoland-samyra-02.jpg", "20260508-windsor-legoland-samyra-03.jpg", "20260508-windsor-legoland-samyra-04.jpg", "20260508-windsor-legoland-samyra-05.jpg", "20260508-windsor-legoland-samyra-06.jpg", "20260508-windsor-legoland-samyra-07.jpg", "20260508-windsor-legoland-samyra-08.jpg", "20260508-windsor-legoland-samyra-09.jpg", "20260508-windsor-legoland-samyra-10.jpg", "20260508-windsor-legoland-samyra-11.jpg", "20260508-windsor-legoland-samyra-12.jpg", "20260508-windsor-legoland-samyra-13.jpg", "20260509-bath-bath-abbey-01.jpg", "20260509-bath-bath-abbey-02.jpg", "20260509-bath-bath-abbey-03.jpg", "20260509-bath-bath-abbey-04.jpg", "20260509-bath-bath-abbey-05.jpg", "20260509-bath-bath-abbey-06.jpg", "20260509-bath-bath-abbey-07.jpg", "20260509-bath-restaurant-dinner.jpg", "20260509-london-hotel-morning-samyra.jpg", "20260509-stonehenge-neolithic-village-namrata-ansh-samyra-01.jpg", "20260509-stonehenge-neolithic-village-namrata-ansh-samyra-02.jpg", "20260509-stonehenge-neolithic-village-namrata-ansh-samyra-03.jpg", "20260509-stonehenge-neolithic-village-namrata-ansh-samyra-04.jpg", "20260509-stonehenge-neolithic-village-namrata-ansh-samyra-05.jpg", "20260509-stonehenge-neolithic-village-namrata-ansh-samyra-06.jpg", "20260509-stonehenge-neolithic-village-namrata-ansh-samyra-07.jpg", "20260509-stonehenge-neolithic-village-namrata-ansh-samyra-08.jpg", "20260509-stonehenge-neolithic-village-namrata-ansh-samyra-09.jpg", "20260509-windsor-windsor-castle-entrance.jpg", "20260509-windsor-windsor-castle-royal-guard-namrata-samyra-01.jpg", "20260509-windsor-windsor-castle-royal-guard-namrata-samyra-02.jpg", "20260509-windsor-windsor-castle-royal-guard-namrata-samyra-03.jpg", "20260509-windsor-windsor-castle-royal-guard-namrata-samyra-04.jpg", "20260509-windsor-windsor-castle-royal-guard-namrata-samyra-05.jpg", "20260509-windsor-windsor-castle-royal-guard-namrata-samyra-06.jpg", "20260509-windsor-windsor-castle-royal-guard-namrata-samyra-07.jpg", "20260510-birmingham-balaji-temple-all4-01.jpg", "20260510-birmingham-balaji-temple-all4-02.jpg", "20260510-birmingham-balaji-temple-all4-03.jpg", "20260510-birmingham-balaji-temple-all4-04.jpg", "20260510-lake-district-windermere-airbnb.jpg", "20260510-lake-district-windermere-lakeside-samyra-01.jpg", "20260510-lake-district-windermere-lakeside-samyra-02.jpg", "20260510-lake-district-windermere-lakeside-samyra-03.jpg", "20260510-lake-district-windermere-lakeside-samyra-04.jpg", "20260510-lake-district-windermere-lakeside-samyra-05.jpg", "20260510-lake-district-windermere-lakeside-samyra-06.jpg", "20260510-london-hotel-pod-namrata-01.jpg", "20260510-london-hotel-pod-namrata-02.jpg", "20260511-lake-district-airbnb-dinner.jpg", "20260511-lake-district-airbnb-meal-all4.jpg", "20260511-lake-district-forest-stream-paresh-namrata-01.jpg", "20260511-lake-district-forest-stream-paresh-namrata-02.jpg", "20260511-lake-district-forest-stream-paresh-namrata-03.jpg", "20260511-lake-district-forest-stream-paresh-namrata-04.jpg", "20260511-lake-district-forest-stream-paresh-namrata-05.jpg", "20260511-lake-district-hawkshead-church-garden-namrata-01.jpg", "20260511-lake-district-hawkshead-church-garden-namrata-02.jpg", "20260511-lake-district-hawkshead-church-garden-namrata-03.jpg", "20260511-lake-district-hawkshead-church-garden-namrata-04.jpg", "20260511-lake-district-hawkshead-church-garden-namrata-05.jpg", "20260511-lake-district-hawkshead-church-garden-namrata-06.jpg", "20260511-lake-district-hawkshead-church-garden-namrata-07.jpg", "20260511-lake-district-hawkshead-church-garden-namrata-08.jpg", "20260511-lake-district-hawkshead-church-garden-namrata-09.jpg", "20260511-lake-district-hawkshead-church-garden-namrata-10.jpg", "20260511-lake-district-hawkshead-church-garden-namrata-11.jpg", "20260511-lake-district-hawkshead-church-garden-namrata-12.jpg", "20260511-lake-district-hawkshead-church-garden-namrata-13.jpg", "20260511-lake-district-hawkshead-church-garden-namrata-14.jpg", "20260511-lake-district-hawkshead-church-garden-namrata-15.jpg", "20260511-lake-district-hawkshead-church-garden-namrata-16.jpg", "20260511-lake-district-windermere-boat-paresh.jpg", "20260511-lake-district-windermere-evening-namrata.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-01.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-02.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-03.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-04.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-05.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-06.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-07.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-08.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-09.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-10.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-11.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-12.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-13.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-14.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-15.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-16.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-17.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-18.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-19.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-20.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-21.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-22.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-23.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-24.jpg", "20260511-lake-district-windermere-marina-paresh-namrata-25.jpg", "20260512-lake-district-countryside-drive-namrata-01.jpg", "20260512-lake-district-countryside-drive-namrata-02.jpg", "20260512-lake-district-countryside-drive-namrata-03.jpg", "20260512-lake-district-square-orange-restaurant-paresh-ansh-01.jpg", "20260512-lake-district-square-orange-restaurant-paresh-ansh-02.jpg", "20260512-lake-district-square-orange-restaurant-paresh-ansh-03.jpg", "20260512-lake-district-square-orange-restaurant-paresh-ansh-04.jpg", "20260512-lake-district-windermere-ambleside-town-paresh-ansh-01.jpg", "20260512-lake-district-windermere-ambleside-town-paresh-ansh-02.jpg", "20260512-lake-district-windermere-ambleside-town-paresh-ansh-03.jpg", "20260512-lake-district-windermere-ferry-dock-paresh-namrata-01.jpg", "20260512-lake-district-windermere-ferry-dock-paresh-namrata-02.jpg", "20260512-lake-district-windermere-ferry-dock-paresh-namrata-03.jpg", "20260512-lake-district-windermere-ferry-dock-paresh-namrata-04.jpg", "20260512-lake-district-windermere-ferry-dock-paresh-namrata-05.jpg", "20260512-lake-district-windermere-ferry-dock-paresh-namrata-06.jpg", "20260512-lake-district-windermere-ferry-dock-paresh-namrata-07.jpg", "20260513-scotland-flower-garden-namrata-01.jpg", "20260513-scotland-flower-garden-namrata-02.jpg", "20260513-scotland-flower-garden-namrata-03.jpg", "20260513-scotland-flower-garden-namrata-04.jpg", "20260513-scotland-glencoe-three-sisters-all4.jpg", "20260513-scotland-highlands-loch-boat-cafe-all4-01.jpg", "20260513-scotland-highlands-loch-boat-cafe-all4-02.jpg", "20260513-scotland-highlands-loch-boat-cafe-all4-03.jpg", "20260513-scotland-highlands-loch-boat-cafe-all4-04.jpg", "20260513-scotland-indian-restaurant-dinner-01.jpg", "20260513-scotland-indian-restaurant-dinner-02.jpg", "20260513-scotland-indian-restaurant-dinner-03.jpg", "20260513-scotland-vintage-train-restaurant-paresh-samyra.jpg", "20260514-edinburgh-edinburgh-castle-namrata-01.jpg", "20260514-edinburgh-edinburgh-castle-namrata-02.jpg", "20260514-edinburgh-edinburgh-castle-namrata-03.jpg", "20260514-edinburgh-edinburgh-castle-namrata-04.jpg", "20260514-edinburgh-edinburgh-castle-namrata-05.jpg", "20260514-edinburgh-edinburgh-castle-namrata-06.jpg", "20260514-edinburgh-edinburgh-castle-namrata-07.jpg", "20260514-edinburgh-edinburgh-castle-namrata-08.jpg", "20260514-edinburgh-edinburgh-castle-namrata-09.jpg", "20260514-edinburgh-edinburgh-castle-namrata-10.jpg", "20260514-edinburgh-edinburgh-castle-namrata-11.jpg", "20260514-edinburgh-edinburgh-castle-namrata-12.jpg", "20260514-edinburgh-edinburgh-castle-namrata-13.jpg", "20260514-edinburgh-edinburgh-castle-namrata-14.jpg", "20260514-edinburgh-edinburgh-castle-namrata-15.jpg", "20260514-edinburgh-edinburgh-castle-namrata-16.jpg", "20260514-edinburgh-train-samyra.jpg", "20260515-scotland-eilean-donan-castle-gate-ansh-01.jpg", "20260515-scotland-eilean-donan-castle-gate-ansh-02.jpg", "20260515-scotland-eilean-donan-castle-gate-ansh-03.jpg", "20260515-scotland-falls-waterfall-01.jpg", "20260515-scotland-falls-waterfall-02.jpg", "20260515-scotland-falls-waterfall-03.jpg", "20260515-scotland-falls-waterfall-04.jpg", "20260515-scotland-falls-waterfall-05.jpg", "20260515-scotland-falls-waterfall-06.jpg", "20260515-scotland-falls-waterfall-07.jpg", "20260515-scotland-falls-waterfall-08.jpg", "20260515-scotland-falls-waterfall-09.jpg", "20260515-scotland-falls-waterfall-10.jpg", "20260515-scotland-falls-waterfall-11.jpg", "20260515-scotland-falls-waterfall-12.jpg", "20260515-scotland-falls-waterfall-13.jpg", "20260515-scotland-falls-waterfall-14.jpg", "20260515-scotland-falls-waterfall-15.jpg", "20260515-scotland-falls-waterfall-16.jpg", "20260515-scotland-falls-waterfall-17.jpg", "20260515-scotland-falls-waterfall-18.jpg", "20260515-scotland-falls-waterfall-19.jpg", "20260515-scotland-falls-waterfall-20.jpg", "20260515-scotland-highland-gorge-bridge-01.jpg", "20260515-scotland-highland-gorge-bridge-02.jpg", "20260515-scotland-highland-gorge-bridge-03.jpg", "20260515-scotland-highland-gorge-bridge-04.jpg", "20260515-scotland-highland-gorge-bridge-05.jpg", "20260515-scotland-highland-gorge-bridge-06.jpg", "20260515-scotland-highland-gorge-bridge-07.jpg", "20260515-scotland-highlands-stone-bridge-ansh-01.jpg", "20260515-scotland-highlands-stone-bridge-ansh-02.jpg", "20260515-scotland-highlands-stone-bridge-ansh-03.jpg", "20260515-scotland-highlands-stone-bridge-ansh-04.jpg", "20260515-scotland-inverness-bombay-thistle-restaurant-all4-01.jpg", "20260515-scotland-inverness-bombay-thistle-restaurant-all4-02.jpg", "20260515-scotland-inverness-bombay-thistle-restaurant-all4-03.jpg", "20260515-scotland-inverness-bombay-thistle-restaurant-all4-04.jpg", "20260515-scotland-inverness-hotel-room-ansh.jpg", "20260515-scotland-loch-scenic.jpg", "20260516-inverness-high-street-01.jpg", "20260516-inverness-high-street-02.jpg", "20260516-inverness-high-street-03.jpg", "20260516-inverness-high-street-04.jpg", "20260516-inverness-high-street-05.jpg", "20260516-inverness-high-street-06.jpg", "20260516-inverness-high-street-07.jpg", "20260516-inverness-high-street-08.jpg", "20260516-inverness-high-street-09.jpg", "20260516-inverness-high-street-10.jpg", "20260516-inverness-high-street-11.jpg", "20260516-inverness-high-street-12.jpg", "20260516-inverness-high-street-13.jpg", "20260516-inverness-high-street-14.jpg", "20260516-inverness-hotel-lounge-coffee-paresh-namrata.jpg", "20260516-inverness-ness-bridge-01.jpg", "20260516-inverness-ness-bridge-02.jpg", "20260516-inverness-ness-bridge-03.jpg", "20260516-inverness-victorian-buildings-01.jpg", "20260516-inverness-victorian-buildings-02.jpg", "20260516-inverness-victorian-buildings-03.jpg", "20260516-inverness-victorian-buildings-04.jpg", "20260516-inverness-victorian-buildings-05.jpg", "20260516-inverness-victorian-buildings-06.jpg", "20260516-scotland-highlands-snowy-mountains.jpg", "20260516-train-inverness-to-edinburgh-card-game-all4.jpg", "20260517-amsterdam-schiphol-airport-ansh-samyra-01.jpg", "20260517-amsterdam-schiphol-airport-ansh-samyra-02.jpg", "20260517-amsterdam-schiphol-klm-airport.jpg", "20260518-india-mumbai-airport-arrival-all4.jpg", "20260520-windsor-windsor-castle-st-georges-chapel-paresh-namrata-samyra-01.jpg", "20260520-windsor-windsor-castle-st-georges-chapel-paresh-namrata-samyra-02.jpg", "20260520-windsor-windsor-castle-st-georges-chapel-paresh-namrata-samyra-03.jpg", "20260520-windsor-windsor-castle-st-georges-chapel-paresh-namrata-samyra-04.jpg"];
+const CITY_MAP = Object.fromEntries([["london", "\ud83c\udfd9\ufe0f London"], ["windsor", "\ud83c\udff0 Windsor"], ["bath", "\ud83d\udec1 Bath"], ["stonehenge", "\ud83d\uddff Stonehenge"], ["birmingham", "\ud83d\udd4c Birmingham"], ["lake", "\ud83c\udfd4\ufe0f Lake District"], ["edinburgh", "\ud83c\udfef Edinburgh"], ["scotland", "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc73\udb40\udc63\udb40\udc74\udb40\udc7f Scotland"], ["inverness", "\ud83c\udf09 Inverness"], ["amsterdam", "\ud83c\uddf3\ud83c\uddf1 Amsterdam"], ["india", "\ud83c\uddee\ud83c\uddf3 India"], ["flight", "\u2708\ufe0f Flight"], ["train", "\ud83d\ude82 Train"]]);
+const PPL = ['paresh','namrata','ansh','samyra'];
+
+let tags = {};
+let fState = {people:'all', city:'all', tag:'all', album:'all'};
+let selIdx = 0;
+let gi = [];
+
+const fmtDate = d => new Date(d+'T12:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+const fmtLoc  = s => (s||'').replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+const cap = s => s ? s[0].toUpperCase()+s.slice(1) : '';
+
+// ── Load tags.json then build ─────────────────────────────────────────
+fetch('./tags.json?t='+Date.now())
+  .then(r=>r.json())
+  .then(data => { tags=data; init(); })
+  .catch(() => {
+    // fallback: build with empty tag data
+    FILES.forEach(f=>tags[f]={file:f,date:'',location:'',city:'',city_label:'',people:[],tags:[],rating:0,caption:'',keep:null});
+    init();
   });
+
+function init() {
+  document.getElementById('loading').style.display='none';
+  buildStats();
+  buildControls();
+  buildGrid();
+  af();
+}
+
+function buildStats() {
+  const kept = FILES.filter(f=>(tags[f]||{}).keep===true).length;
+  const withPpl = FILES.filter(f=>((tags[f]||{}).people||[]).length>0).length;
+  const days = new Set(FILES.map(f=>(tags[f]||{}).date?.slice(0,10)).filter(Boolean)).size;
+  document.getElementById('stats-row').innerHTML = [
+    [FILES.length,'Photos'],[days,'Days'],['13','Destinations'],[kept||'—','In album']
+  ].map(([v,l])=>`<div class="stat"><span>${v}</span><small>${l}</small></div>`).join('');
+}
+
+function buildControls() {
+  // Collect unique values
+  const cities = new Set(), tagSet = new Set();
+  FILES.forEach(f=>{
+    const t=tags[f]||{};
+    if(t.city) cities.add(t.city);
+    (t.tags||[]).forEach(x=>tagSet.add(x));
+  });
+
+  // People filter
+  const pplEl = document.getElementById('ctrl-people');
+  pplEl.innerHTML = '';
+  [['all','Everyone'],...PPL.map(p=>[p,cap(p)]),['none','Scenic only']].forEach(([v,l])=>{
+    const b=document.createElement('span');b.className='fb'+(v==='all'?' on':'');b.dataset.g='people';b.dataset.v=v;
+    b.textContent=l; b.addEventListener('click',()=>setF('people',v,b)); pplEl.appendChild(b);
+  });
+
+  // Location filter
+  const locEl = document.getElementById('ctrl-location');
+  locEl.innerHTML = '';
+  const allLocBtn = document.createElement('span');
+  allLocBtn.className='fb on'; allLocBtn.dataset.g='city'; allLocBtn.dataset.v='all';
+  allLocBtn.textContent='All locations'; allLocBtn.addEventListener('click',()=>setF('city','all',allLocBtn));
+  locEl.appendChild(allLocBtn);
+  [...cities].sort().forEach(c=>{
+    const b=document.createElement('span');b.className='fb';b.dataset.g='city';b.dataset.v=c;
+    b.textContent=CITY_MAP[c]||cap(c); b.addEventListener('click',()=>setF('city',c,b)); locEl.appendChild(b);
+  });
+
+  // Tags filter
+  const tagEl = document.getElementById('ctrl-tags');
+  tagEl.innerHTML = '';
+  if(tagSet.size>0){
+    const allTagBtn=document.createElement('span');allTagBtn.className='fb on';allTagBtn.dataset.g='tag';allTagBtn.dataset.v='all';
+    allTagBtn.textContent='All tags'; allTagBtn.addEventListener('click',()=>setF('tag','all',allTagBtn));
+    tagEl.appendChild(allTagBtn);
+    [...tagSet].sort().forEach(t=>{
+      const b=document.createElement('span');b.className='fb';b.dataset.g='tag';b.dataset.v=t;
+      b.textContent=t; b.addEventListener('click',()=>setF('tag',t,b)); tagEl.appendChild(b);
+    });
+    // Album filter
+    const sepEl=document.createElement('span');sepEl.className='sep';tagEl.appendChild(sepEl);
+    [['all','All'],['keep','✓ In album'],['skip','✗ Skipped']].forEach(([v,l])=>{
+      const b=document.createElement('span');b.className='fb'+(v==='all'?' on':'');b.dataset.g='album';b.dataset.v=v;
+      b.textContent=l; b.addEventListener('click',()=>setF('album',v,b)); tagEl.appendChild(b);
+    });
+  }
+}
+
+function setF(group, val, el) {
+  document.querySelectorAll(`.fb[data-g="${group}"]`).forEach(x=>x.classList.remove('on'));
+  el.classList.add('on'); fState[group]=val; af();
+}
+
+// ── Grid ──────────────────────────────────────────────────────────────
+function buildGrid() {
+  const g=document.getElementById('grid'); g.innerHTML=''; gi=[];
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting&&e.target.dataset.src){e.target.src=e.target.dataset.src;delete e.target.dataset.src;obs.unobserve(e.target);}});
+  },{rootMargin:'300px'});
+
+  FILES.forEach((f,i)=>{
+    const t=tags[f]||{};
+    const loc=fmtLoc(t.location);
+    const ppl=(t.people||[]).map(cap).join(', ');
+    const tArr=t.tags||[];
+    const el=document.createElement('div');el.className='gi';el.dataset.i=i;
+    el.innerHTML=`<img alt="">
+      <div class="gi-ov">
+        <div class="gi-loc">${loc}</div>
+        ${ppl?`<div class="gi-ppl">${ppl}</div>`:''}
+        ${tArr.length?`<div class="gi-tags">${tArr.slice(0,3).map(x=>`<span class="gi-tag">${x}</span>`).join('')}</div>`:''}
+      </div>
+      ${t.rating?`<div class="gi-stars">${'★'.repeat(t.rating)}</div>`:''}
+      ${t.keep===true?`<div class="gi-kb">✓</div>`:''}`;
+    const img=el.querySelector('img');
+    img.dataset.src=`thumbs/${f.replace(/\.[^.]+$/,'.jpg')}`;
+    obs.observe(img);
+    img.addEventListener('load',()=>img.classList.add('ok'));
+    img.addEventListener('error',()=>{img.classList.add('ok');img.style.background='#1a1a1a';});
+    el.addEventListener('click',()=>openLB(i));
+    g.appendChild(el); gi.push({el,f,i});
+  });
+}
+
+// ── Filters ───────────────────────────────────────────────────────────
+function af() {
+  const q=document.getElementById('srch').value.toLowerCase();
+  let vis=0;
+  gi.forEach(({el,f})=>{
+    const t=tags[f]||{};
+    const pArr=t.people||[], tArr=t.tags||[];
+    const ok=
+      (fState.people==='all'||(fState.people==='none'&&pArr.length===0)||pArr.includes(fState.people))&&
+      (fState.city==='all'||t.city===fState.city)&&
+      (fState.tag==='all'||tArr.includes(fState.tag))&&
+      (fState.album==='all'||(fState.album==='keep'&&t.keep===true)||(fState.album==='skip'&&t.keep===false))&&
+      (!q||f.toLowerCase().includes(q)||(t.location||'').includes(q)||(t.caption||'').toLowerCase().includes(q)||tArr.some(x=>x.includes(q)));
+    el.classList.toggle('hidden',!ok);
+    if(ok)vis++;
+  });
+  document.getElementById('cnt').textContent=vis+' photo'+(vis!==1?'s':'');
+  document.getElementById('empty-msg').style.display=vis===0?'block':'none';
+}
+
+// ── Grid size ─────────────────────────────────────────────────────────
+function setSize(s){
+  document.getElementById('grid').classList.toggle('large',s==='lg');
+  document.getElementById('sz-sm').classList.toggle('on',s==='sm');
+  document.getElementById('sz-lg').classList.toggle('on',s==='lg');
+}
+
+// ── Lightbox ──────────────────────────────────────────────────────────
+function visList(){return gi.filter(({el})=>!el.classList.contains('hidden')).map(({f,i})=>({f,i}));}
+
+function openLB(fileIdx) {
+  const v=visList(), pos=v.findIndex(x=>x.i===fileIdx);
+  if(pos<0)return; selIdx=pos; showLB(v); document.getElementById('lb').classList.add('open'); document.body.style.overflow='hidden';
+}
+function closeLB(){document.getElementById('lb').classList.remove('open');document.body.style.overflow='';}
+function navLB(d){const v=visList();selIdx=(selIdx+d+v.length)%v.length;showLB(v);}
+
+function showLB(v){
+  if(!v)v=visList();
+  const {f}=v[selIdx];
+  const t=tags[f]||{};
+  const img=document.getElementById('lb-img');
+  img.style.opacity='0'; img.src=`photos/${f.replace(/\.[^.]+$/,'.jpg')}`;
+  document.getElementById('lb-loc').textContent=fmtLoc(t.location);
+  document.getElementById('lb-ppl').textContent=(t.people||[]).map(cap).join(', ');
+  document.getElementById('lb-date').textContent=t.date?fmtDate(t.date):'';
+  document.getElementById('lb-cnt').textContent=(selIdx+1)+' / '+v.length;
+  document.getElementById('lb-tags').innerHTML=(t.tags||[]).map(x=>`<span class="lb-tag">${x}</span>`).join('');
+  document.getElementById('lb-cap').textContent=t.caption||'';
+}
+
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('lb').classList.contains('open'))return;
+  if(e.key==='Escape')closeLB();
+  else if(e.key==='ArrowLeft')navLB(-1);
+  else if(e.key==='ArrowRight')navLB(1);
 });
-function af(){let v=0;const hs=document.querySelectorAll(".dh");const dc={};
-  gi.forEach(({el,photo})=>{const ok=(aT==="all"||photo.type===aT)&&(aD==="all"||photo.date===aD)&&(!sQ||photo.date.includes(sQ)||fd(photo.date).toLowerCase().includes(sQ));
-    el.classList.toggle("hidden",!ok);if(ok){v++;dc[photo.date]=(dc[photo.date]||0)+1;}});
-  hs.forEach(h=>h.classList.toggle("hidden",!dc[h.dataset.day]));
-  document.getElementById("cnt").textContent=v+" photo"+(v!==1?"s":"");
-  document.getElementById("empty").style.display=v===0?"block":"none";}
-document.querySelectorAll(".fb").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".fb").forEach(x=>x.classList.remove("active"));b.classList.add("active");aT=b.dataset.t;af();}));
-db.addEventListener("click",e=>{const b=e.target.closest(".db");if(!b)return;document.querySelectorAll(".db").forEach(x=>x.classList.remove("active"));b.classList.add("active");aD=b.dataset.d;af();});
-document.getElementById("srch").addEventListener("input",e=>{sQ=e.target.value.trim().toLowerCase();af();});
-const lb=document.getElementById("lb");const lbi=document.getElementById("lbi");let li=0;
-function vp(){return gi.filter(({el})=>!el.classList.contains("hidden")).map(({photo,idx})=>({photo,idx}));}
-function oLB(idx){const v=vp();const pos=v.findIndex(x=>x.idx===idx);if(pos<0)return;li=pos;sLB(v);lb.classList.add("open");document.body.style.overflow="hidden";}
-function sLB(v){if(!v)v=vp();const{photo}=v[li];lbi.src=F+photo.file;document.getElementById("lbb").textContent=TL[photo.type]||photo.type;document.getElementById("lbb").className="lbb "+photo.type;document.getElementById("lbd").textContent=fd(photo.date);document.getElementById("lbn2").textContent=(li+1)+" of "+v.length;}
-function cLB(){lb.classList.remove("open");document.body.style.overflow="";}
-document.getElementById("lbc").addEventListener("click",cLB);lb.addEventListener("click",e=>{if(e.target===lb)cLB();});
-document.getElementById("lbp").addEventListener("click",()=>{const v=vp();li=(li-1+v.length)%v.length;sLB(v);});
-document.getElementById("lbx").addEventListener("click",()=>{const v=vp();li=(li+1)%v.length;sLB(v);});
-document.addEventListener("keydown",e=>{if(!lb.classList.contains("open"))return;const v=vp();if(e.key==="Escape")cLB();else if(e.key==="ArrowLeft"){li=(li-1+v.length)%v.length;sLB(v);}else if(e.key==="ArrowRight"){li=(li+1)%v.length;sLB(v);}});
 let tx=null;
-lb.addEventListener("touchstart",e=>{tx=e.touches[0].clientX;},{passive:true});
-lb.addEventListener("touchend",e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;const v=vp();if(Math.abs(dx)>50){li=dx<0?(li+1)%v.length:(li-1+v.length)%v.length;sLB(v);}tx=null;},{passive:true});
+document.getElementById('lb').addEventListener('touchstart',e=>{tx=e.touches[0].clientX;},{passive:true});
+document.getElementById('lb').addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)navLB(dx<0?1:-1);tx=null;},{passive:true});
+document.getElementById('lb').addEventListener('click',e=>{if(e.target===document.getElementById('lb'))closeLB();});
 </script>
 </body>
 </html>
